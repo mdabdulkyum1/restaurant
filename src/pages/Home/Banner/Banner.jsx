@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './Banner.css'
@@ -8,15 +7,9 @@ import slide3 from "../../../assets/home/03.png";
 
 
 const Banner = () => {
-
-  useEffect(() => {
-    const slideWrapper = document.querySelector(".carousel");
-    slideWrapper.style.height = "650px";
-  }, []);
-
-
   return (
     <Carousel
+      className="mt-16"
       autoPlay={true}
       interval={3000}  
       infiniteLoop={true} 
