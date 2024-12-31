@@ -38,7 +38,7 @@ const Testimonial = () => {
         >
           {reviews.map((review) => (
             <SwiperSlide key={review._id}>
-              <div className="text-center h-[300px]">
+              <div className="text-center h-[350px]">
                 <div className="flex flex-col items-center justify-center">
                   rating: {review.rating}
                   <Rating
@@ -50,7 +50,7 @@ const Testimonial = () => {
                   />
                 </div>
                 <div className="space-y-3">
-                  <h1 className="text-[70px]">{'"'}</h1>
+                  <h1 className="text-[70px]">‘‘</h1>
                   <p className="w-1/2 mx-auto">{review?.details}</p>
                   <h3 className="text-yellow-500 text-3xl">{review.name}</h3>
                 </div>
