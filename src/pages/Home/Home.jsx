@@ -1,6 +1,7 @@
 import Banner from "./Banner/Banner";
 import Callus from "./CallUs/Callus";
 import Featured from "./Category/Category";
+import ChefRecommend from "./ChefRecommends/ChefRecommend";
 import ChefService from "./ChefService/ChefService";
 import PopularMenu from "./PopularMenu/PopularMenu";
 
@@ -13,6 +14,7 @@ const Home = () => {
       <ChefService></ChefService>
       <PopularMenu></PopularMenu>
       <Callus></Callus>
+      <ChefRecommend></ChefRecommend>
     </>
   );
 };
