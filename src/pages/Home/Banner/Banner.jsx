@@ -9,7 +9,7 @@ import slide3 from "../../../assets/home/03.png";
 const Banner = () => {
   return (
     <Carousel
-      className="mt-16"
+      className="mt-16 md:mt-0"
       autoPlay={true}
       interval={3000}  
       infiniteLoop={true} 
