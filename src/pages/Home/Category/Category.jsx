@@ -3,7 +3,7 @@ import FeaturedSlider from "./CategorySlider";
 
 
 
-const Featured = () => {
+const Category = () => {
     return (
         <div className="my-10">  
             <SectionTitle title="ORDER ONLINE" subTitle="From 11:00am to 10:00pm"></SectionTitle>
@@ -15,4 +15,5 @@ const Featured = () => {
     );
 };
 
-export default Featured;
+export default Category;
+
