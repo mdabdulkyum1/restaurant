@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 import SectionTitle from "../../../components/shared/SectionTitle/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -15,6 +17,8 @@ const Testimonial = () => {
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
+  
+
   return (
     <div className="my-12">
       <SectionTitle
@@ -35,8 +39,15 @@ const Testimonial = () => {
           {reviews.map((review) => (
             <SwiperSlide key={review._id}>
               <div className="text-center h-[300px]">
-                <div className="">
-                    rating: {review.rating}
+                <div className="flex flex-col items-center justify-center">
+                  rating: {review.rating}
+                  <Rating
+                    style={{ maxWidth: 200 }}
+                    value={review?.rating}
+                    items={5}
+                    highlightOnlySelected={true}
+                    readOnly={true}
+                  />
                 </div>
                 <div className="space-y-3">
                   <h1 className="text-[70px]">{'"'}</h1>
