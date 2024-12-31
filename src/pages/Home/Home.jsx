@@ -1,14 +1,12 @@
-// import useTheme from "../../hooks/ThemeToggle/useTheme";
-
-import Banner from './Banner/Banner';
+import Banner from "./Banner/Banner";
+import Featured from "./Category/Category";
+;
 
 const Home = () => {
-  // const { theme } = useTheme();
   return (
     <>
-    
       <Banner></Banner>
-
+      <Featured></Featured>
     </>
   );
 };
