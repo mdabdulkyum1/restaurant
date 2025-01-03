@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
 
-import salad from '../../../assets/menu/salad-bg.jpg'
 
 
 function ItemCard({ item }) {
-  const { name , recipe} = item || {};
+  const { name , recipe, image} = item || {};
   return (
     <div className=""> 
      <div className="">
-        <img src={salad} alt={name} />
+        <img src={image} alt={name} />
      </div>
      <div className="my-3 space-y-3 text-center">
         <h2 className="text-2xl font-semibold">{name}</h2>
