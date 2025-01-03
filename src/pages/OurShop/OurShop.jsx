@@ -2,13 +2,16 @@ import MenuBanner from "../Menus/MenuBanner/MenuBanner";
 import shopImg from "../../assets/shop/banner2.jpg";
 import useMenu from "../../hooks/GetData/useMenu";
 import ItemCard from "../../components/shared/ItemCard/ItemCard";
-import { useState } from "react";
+import {  useState } from "react";
 import useCategories from "../../hooks/GetData/useCategories";
+import usePagination from "../../hooks/pagination/usePagination";
 
 const OurShop = () => {
-  const [active, setActive] = useState('all')
-  const { menus } = useMenu({active});
+  const [active, setActive] = useState('all');
+  const {pages, currentPage, numberOfPages, setCurrentPage, handelPrevBtn, handelNextBtn } = usePagination();
+  const { menus } = useMenu({active, currentPage});
   const {allCategories}  = useCategories();
+
 
   const handelClick = category =>{
     setActive(category)
@@ -34,6 +37,24 @@ const OurShop = () => {
             <ItemCard item={item} key={item._id}></ItemCard>
           ))}
         </div>
+      </div>
+
+      <div className="my-12">
+          <div className="text-center pagination-div">
+              
+                <button className="btn" onClick={handelPrevBtn} disabled={currentPage === 0}>Prev</button>
+                {
+                    pages.map((page)=> <button 
+                        className={`btn ${currentPage === page ? "bg-yellow-500" : ''}`}
+                        onClick={()=> page !== "..." && setCurrentPage(page)}
+                        disabled={page === "..."}
+                        key={page}>
+                            {page === "..." ? "..." : page+1}
+                        </button>)
+                    }
+                <button onClick={handelNextBtn} disabled={currentPage === numberOfPages -1}>Next</button>
+                
+            </div>
       </div>
     </div>
   );
