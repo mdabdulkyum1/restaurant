@@ -12,8 +12,8 @@ import soupMenusImg from "../../assets/menu/soup-bg.jpg";
 
 
 const Menus = () => {
-  const { menus } = useMenu();
-
+                                    const { menus } = useMenu({active:'all'});
+console.log(menus);
   const popularMenus = menus.filter((menu) => menu.category === "popular");
   const dessertMenus = menus.filter((menu) => menu.category === "dessert");
   const pizzaMenus = menus.filter((menu) => menu.category === "pizza");

@@ -5,20 +5,21 @@ import PropTypes from "prop-types";
 function ItemCard({ item }) {
   const { name , recipe, image} = item || {};
   return (
-    <div className=""> 
-     <div className="">
-        <img src={image} alt={name} />
-     </div>
-     <div className="my-3 space-y-3 text-center">
-        <h2 className="text-2xl font-semibold">{name}</h2>
-        <p>{recipe}</p>
-     </div>
-      <div className="text-center my-6">
-        <button className="btn btn-outline border-b-4 border-black">
+    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+    <figure>
+      <img src={image} alt={name} className="w-full h-64 object-cover" />
+    </figure>
+
+    <div className="card-body">
+      <h2 className="card-title text-center text-2xl font-bold">{name}</h2>
+      <p className="text-center text-gray-600">{recipe}</p>
+      <div className="card-actions justify-center mt-4">
+        <button className="btn btn-outline border-b-4 border-black hover:bg-black hover:text-white">
           Add to Cart
         </button>
       </div>
     </div>
+  </div>
   );
 }
 
