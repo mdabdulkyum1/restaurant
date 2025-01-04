@@ -59,13 +59,13 @@ const Dashboard = () => {
             </a>
           </li>
           <li>
-            <Link
-              to="#"
+            <NavLink
+              to="add-item"
               className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-700 rounded"
             >
               <FaUtensils />
               <span>Add Items</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
             <Link
@@ -194,7 +194,7 @@ const Dashboard = () => {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 p-6 ml-0 ">
+      <div className="flex-1 md:p-6 ml-0 ">
         {/* Dynamic Content */}
         <Outlet />
       </div>

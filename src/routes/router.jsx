@@ -7,6 +7,7 @@ import Dashboard from "../layout/Dashboard/dashboard";
 import UserDashboard from "../layout/Dashboard/UserDashboard";
 import AdminHome from "../pages/Admin/AdminHome";
 import AdminProfile from "../pages/Admin/AdminProfile";
+import AddItem from "../pages/Admin/AddItem";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: "profile",
                 element: <AdminProfile></AdminProfile>
+            },
+            {
+                path: "add-item",
+                element: <AddItem></AddItem>
             }
         ]
     },
