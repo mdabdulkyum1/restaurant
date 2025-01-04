@@ -3,6 +3,7 @@ import Layout from "../layout/Layout";
 import Home from "../pages/Home/Home";
 import Menus from "../pages/Menus/Menus";
 import OurShop from "../pages/OurShop/OurShop";
+import Dashboard from '../pages/Dashboard/Dashboard';
 
 const router = createBrowserRouter([
     {
@@ -20,7 +21,14 @@ const router = createBrowserRouter([
             {
                 path: "our-shop",
                 element: <OurShop></OurShop>
-            }
+            },
+        ]
+    },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+
         ]
     }
 ]);
