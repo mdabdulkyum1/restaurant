@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useScrollDirection from "../../hooks/ScrollDirection/useScrollDirection";
 import useTheme from "../../hooks/ThemeToggle/useTheme";
 
@@ -8,11 +8,21 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li><NavLink to="/">HOME</NavLink></li>
-      <li><NavLink to="/contact">CONTACT US</NavLink></li>
-      <li><NavLink to="/dashboard">DASHBOARD</NavLink></li>
-      <li><NavLink to="/our-menu">OUR MENU</NavLink></li>
-      <li><NavLink to="/our-shop">OUR SHOP</NavLink></li>
+      <li>
+        <NavLink to="/">HOME</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">CONTACT US</NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard">DASHBOARD</NavLink>
+      </li>
+      <li>
+        <NavLink to="/our-menu">OUR MENU</NavLink>
+      </li>
+      <li>
+        <NavLink to="/our-shop">OUR SHOP</NavLink>
+      </li>
     </>
   );
   return (
@@ -89,16 +99,27 @@ const Navbar = () => {
             </svg>
           </label>
 
-          <button
-            className={`btn btn-sm  border rounded-sm ${
-              theme === "night" && "border-blue-400"
-            }`}
-          >
-            Login
-          </button>
+          <Link to="/signup">
+            <button
+              className={`btn btn-sm  border rounded-sm ${
+                theme === "night" && "border-blue-400"
+              }`}
+            >
+              SignUp
+            </button>
+          </Link>
+
+          <Link to="/login">
+            <button
+              className={`btn btn-sm  border rounded-sm ${
+                theme === "night" && "border-blue-400"
+              }`}
+            >
+              Login
+            </button>
+          </Link>
         </div>
       </div>
-
     </nav>
   );
 };

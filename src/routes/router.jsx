@@ -10,6 +10,8 @@ import AdminProfile from "../pages/Admin/AdminProfile";
 import AddItem from "../pages/Admin/AddItem";
 import ManageItems from "../pages/Admin/ManageItems";
 import ManageAllBookings from "../pages/Admin/ManageAllBooking";
+import Login from "../pages/Authentications/Login";
+import SignUp from "../pages/Authentications/SignUp";
 
 const router = createBrowserRouter([
     {
@@ -62,6 +64,14 @@ const router = createBrowserRouter([
         children: [
 
         ]
+    },
+    {
+        path: "login",
+        element: <Login></Login>
+    },
+    {
+        path: "signup",
+        element: <SignUp></SignUp>
     }
 ]);
 
