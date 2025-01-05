@@ -9,6 +9,7 @@ import dessertMenusImg from "../../assets/menu/dessertBg.jpeg";
 import pizzaMenusImg from "../../assets/menu/pizzaBg.jpg";
 import saladMenusImg from "../../assets/menu/salad-bg.jpg";
 import soupMenusImg from "../../assets/menu/soup-bg.jpg";
+import { Helmet } from "react-helmet-async";
 
 
 const Menus = () => {
@@ -22,6 +23,9 @@ const { menus } = useMenu({active:'all'});
 
   return (
     <>
+     <Helmet>
+            <title>Foods | Menus</title>
+      </Helmet>
       <section>
         <MenuBanner
           title="OUR MENU"

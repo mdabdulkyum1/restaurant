@@ -5,6 +5,7 @@ import ItemCard from "../../components/shared/ItemCard/ItemCard";
 import {  useState } from "react";
 import useCategories from "../../hooks/GetData/useCategories";
 import usePagination from "../../hooks/pagination/usePagination";
+import { Helmet } from "react-helmet-async";
 
 const OurShop = () => {
   const [active, setActive] = useState('all');
@@ -19,6 +20,9 @@ const OurShop = () => {
 
   return (
     <div className="">
+       <Helmet>
+              <title>Foods | Shop</title>
+        </Helmet>
       <MenuBanner
         title="Our Shop"
         details="Would you like to try a dish?"
