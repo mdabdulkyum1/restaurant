@@ -30,7 +30,7 @@ const Dashboard = () => {
         <div className="text-2xl font-semibold mb-6">Dashboard</div>
 
         {/* Navigation Links */}
-        <ul className="space-y-4">
+        <ul className="menu space-y-4">
           <li>
             <NavLink
               to="/dashboard"
@@ -68,31 +68,31 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <Link
-              to="#"
+            <NavLink
+              to="manage-items"
               className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-700 rounded"
             >
               <FaListAlt />
               <span>Manage Items</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
-              to="#"
+            <NavLink
+              to="manage-all-bookings"
               className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-700 rounded"
             >
               <FaBook />
               <span>Manage Bookings</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="#"
               className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-700 rounded"
             >
               <FaUsers />
               <span>All Users</span>
-            </Link>
+            </NavLink>
           </li>
 
           <div className="divider border-t border-white"></div>

@@ -8,6 +8,8 @@ import UserDashboard from "../layout/Dashboard/UserDashboard";
 import AdminHome from "../pages/Admin/AdminHome";
 import AdminProfile from "../pages/Admin/AdminProfile";
 import AddItem from "../pages/Admin/AddItem";
+import ManageItems from "../pages/Admin/ManageItems";
+import ManageAllBookings from "../pages/Admin/ManageAllBooking";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
             {
                 path: "add-item",
                 element: <AddItem></AddItem>
+            },
+            {
+                path: "manage-items",
+                element: <ManageItems></ManageItems>
+            },
+            {
+                path: "manage-all-bookings",
+                element: <ManageAllBookings></ManageAllBookings>
             }
         ]
     },
