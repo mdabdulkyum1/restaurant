@@ -1,10 +1,19 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useScrollDirection from "../../hooks/ScrollDirection/useScrollDirection";
 import useTheme from "../../hooks/ThemeToggle/useTheme";
+import useAuth from "../../hooks/GetAuthInfo/useAuth";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const isVisible = useScrollDirection();
+
+  const { user, loading, logOut } = useAuth();
+  const navigate = useNavigate();
+  const handelLogOut = () => {
+    logOut().then(() => {
+        navigate('/login')
+    });
+  };
 
   const links = (
     <>
@@ -99,25 +108,37 @@ const Navbar = () => {
             </svg>
           </label>
 
-          <Link to="/signup">
-            <button
-              className={`btn btn-sm  border rounded-sm ${
-                theme === "night" && "border-blue-400"
-              }`}
-            >
-              SignUp
-            </button>
-          </Link>
-
-          <Link to="/login">
-            <button
-              className={`btn btn-sm  border rounded-sm ${
-                theme === "night" && "border-blue-400"
-              }`}
-            >
-              Login
-            </button>
-          </Link>
+          {loading ? (
+            <div className="skeleton h-12 w-12 shrink-0 border border-yellow-600 rounded-full"></div>
+          ) : user ? (
+            <>
+            <div className="flex items-center gap-2">
+              <img src={user?.photoURL} referrerPolicy="no-referrer" alt={user?.displayName} title={user?.displayName} className="h-12 w-12 rounded-full" />
+              <button className="btn bg-yellow-400" onClick={handelLogOut}>LogOut</button>
+            </div>
+            </>
+          ) : (
+            <>
+              <Link to="/signup">
+                <button
+                  className={`btn btn-sm  border rounded-sm ${
+                    theme === "night" && "border-blue-400"
+                  }`}
+                >
+                  SignUp
+                </button>
+              </Link>
+              <Link to="/login">
+                <button
+                  className={`btn btn-sm  border rounded-sm ${
+                    theme === "night" && "border-blue-400"
+                  }`}
+                >
+                  Login
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

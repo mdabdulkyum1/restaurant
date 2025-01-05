@@ -11,13 +11,20 @@ import {
   FaCog,
   FaBars,
 } from "react-icons/fa";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../hooks/GetAuthInfo/useAuth";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
+  const handelLogOut = () => {
+    logOut().then(() => {
+        navigate('/login')
+    });
+  };
   return (
     <>
       <Helmet>
@@ -144,7 +151,7 @@ const Dashboard = () => {
 
           {/* Logout Button */}
           <div className="mt-auto">
-            <button className="flex items-center justify-center space-x-2 bg-yellow-600 text-white py-2 px-4 rounded-full w-full hover:bg-red-700">
+            <button onClick={handelLogOut} className="flex items-center justify-center space-x-2 bg-yellow-600 text-white py-2 px-4 rounded-full w-full hover:bg-red-700">
               <FaSignOutAlt />
               <span>Logout</span>
             </button>

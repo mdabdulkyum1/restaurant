@@ -1,9 +1,12 @@
-import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
+import { FaFacebook, FaGithub } from "react-icons/fa";
 import authBg from "../../assets/others/authentication.png";
 import signUpImg from "../../assets/others/authentication1.png";
 import { Helmet } from "react-helmet-async";
+import ContinueGoogle from "../../components/shared/GoogleSignUp/ContinueGoogle";
 
 const SignUp = () => {
+
+
   return (
     <>
       <Helmet>
@@ -104,9 +107,7 @@ const SignUp = () => {
               <button className="p-3 bg-gray-100 rounded-full shadow-lg">
                 <FaFacebook className="text-blue-600" size={24} />
               </button>
-              <button className="p-3 bg-gray-100 rounded-full shadow-lg">
-                <FaGoogle className="text-red-500" size={24} />
-              </button>
+              <ContinueGoogle></ContinueGoogle>
               <button className="p-3 bg-gray-100 rounded-full shadow-lg">
                 <FaGithub className="text-gray-800" size={24} />
               </button>
