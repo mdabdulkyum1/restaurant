@@ -2,12 +2,15 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import useScrollDirection from "../../hooks/ScrollDirection/useScrollDirection";
 import useTheme from "../../hooks/ThemeToggle/useTheme";
 import useAuth from "../../hooks/GetAuthInfo/useAuth";
+import useRole from "../../hooks/GetRole/useRole";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const isVisible = useScrollDirection();
 
   const { user, loading, logOut } = useAuth();
+  const {role} = useRole();
+
   const navigate = useNavigate();
   const handelLogOut = () => {
     logOut().then(() => {
@@ -23,9 +26,13 @@ const Navbar = () => {
       <li>
         <NavLink to="/contact">CONTACT US</NavLink>
       </li>
+      {
+          user && role === "admin" && 
       <li>
         <NavLink to="/dashboard">DASHBOARD</NavLink>
       </li>
+      }
+
       <li>
         <NavLink to="/our-menu">OUR MENU</NavLink>
       </li>

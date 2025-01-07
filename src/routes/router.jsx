@@ -14,6 +14,7 @@ import Login from "../pages/Authentications/Login";
 import SignUp from "../pages/Authentications/SignUp";
 import ManageAllUsers from "../pages/Admin/ManageAllUsers";
 import AdminRoute from './AdminRoute';
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <AdminRoute><Dashboard></Dashboard></AdminRoute>,
+        element: <PrivateRoute><AdminRoute><Dashboard></Dashboard></AdminRoute></PrivateRoute>,
         children: [
             {
                 path: '/dashboard',
