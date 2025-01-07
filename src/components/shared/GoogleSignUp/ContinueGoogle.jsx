@@ -7,7 +7,9 @@ import Swal from 'sweetalert2'
 const ContinueGoogle = () => {
     const {googleLogin} = useAuth();
     const location = useLocation();
-    console.log(location);
+    const targetPath = location?.state ? `${location.state}` : '/';
+
+
     
     const navigate = useNavigate();
 
@@ -38,7 +40,7 @@ const ContinueGoogle = () => {
                   });
             
             }
-            navigate('/')
+            navigate(targetPath);
            }
           }).catch((error) => {
               console.log(error);;
