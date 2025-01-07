@@ -51,9 +51,11 @@ const ManageAllBookings = () => {
   };
 
   return (
-    <div className="p-6 bg-light min-h-screen">
+    <div className="p-6 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-8">Manage All Bookings</h1>
-      <div className="overflow-x-auto">
+
+      {/* Table for larger screens */}
+      <div className="hidden sm:block overflow-x-auto">
         <table className="min-w-full bg-white rounded-lg shadow-md">
           <thead className="bg-primary text-white">
             <tr>
@@ -113,6 +115,54 @@ const ManageAllBookings = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Card layout for smaller screens */}
+      <div className="sm:hidden space-y-4">
+        {bookings.map((booking) => (
+          <div
+            key={booking.id}
+            className="bg-white rounded-lg shadow-md p-4 border"
+          >
+            <p className="font-bold text-gray-800">{booking.name}</p>
+            <p className="text-gray-600 text-sm">Email: {booking.email}</p>
+            <p className="text-gray-600 text-sm">Date: {booking.date}</p>
+            <p
+              className={`font-semibold ${
+                booking.status === "Approved"
+                  ? "text-green-600"
+                  : booking.status === "Rejected"
+                  ? "text-red-600"
+                  : "text-yellow-600"
+              }`}
+            >
+              Status: {booking.status}
+            </p>
+            <div className="flex items-center justify-between mt-4">
+              <button
+                onClick={() => handleApprove(booking.id)}
+                className="bg-green-500 text-white px-3 py-1 rounded shadow hover:bg-green-600 flex items-center gap-2"
+              >
+                <FaCheck />
+                Approve
+              </button>
+              <button
+                onClick={() => handleReject(booking.id)}
+                className="bg-red-500 text-white px-3 py-1 rounded shadow hover:bg-red-600 flex items-center gap-2"
+              >
+                <FaTimes />
+                Reject
+              </button>
+              <button
+                onClick={() => handleDelete(booking.id)}
+                className="bg-gray-500 text-white px-3 py-1 rounded shadow hover:bg-gray-600 flex items-center gap-2"
+              >
+                <FaTrashAlt />
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

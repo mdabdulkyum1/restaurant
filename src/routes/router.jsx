@@ -12,6 +12,8 @@ import ManageItems from "../pages/Admin/ManageItems";
 import ManageAllBookings from "../pages/Admin/ManageAllBooking";
 import Login from "../pages/Authentications/Login";
 import SignUp from "../pages/Authentications/SignUp";
+import ManageAllUsers from "../pages/Admin/ManageAllUsers";
+import AdminRoute from './AdminRoute';
 
 const router = createBrowserRouter([
     {
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <AdminRoute><Dashboard></Dashboard></AdminRoute>,
         children: [
             {
                 path: '/dashboard',
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: "manage-all-bookings",
                 element: <ManageAllBookings></ManageAllBookings>
+            },
+            {
+                path: "manage-users",
+                element: <ManageAllUsers></ManageAllUsers>
             }
         ]
     },

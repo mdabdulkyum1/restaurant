@@ -19,7 +19,7 @@ const ContinueGoogle = () => {
                 name: user?.displayName,
                 email: user?.email,
                 photo: user?.photoURL,
-                roll: "customer"
+                role: "customer"
             }
 
         

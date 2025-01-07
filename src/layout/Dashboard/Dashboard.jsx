@@ -99,7 +99,7 @@ const Dashboard = () => {
             </li>
             <li>
               <NavLink
-                to="#"
+                to="manage-users"
                 className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-700 rounded"
               >
                 <FaUsers />
