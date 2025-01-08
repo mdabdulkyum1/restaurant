@@ -50,7 +50,7 @@ const SignUp = () => {
 
       if (result?.user && dbData.insertedId) {
         setLoading(false)
-        
+
         Swal.fire({
           title: 'Success!',
           text: 'User registration completed successfully.',
@@ -70,6 +70,11 @@ const SignUp = () => {
       <Helmet>
         <title>Foods | SignUp</title>
       </Helmet>
+      <div className="absolute top-2 left-52">
+        <Link to="/">
+          <button className="btn btn-sm bg-yellow-500">Back to home</button>
+        </Link>
+      </div>
       <div
         className="min-h-screen flex items-center justify-center px-4"
         style={{
