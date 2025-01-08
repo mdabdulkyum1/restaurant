@@ -3,9 +3,67 @@ import authBg from "../../assets/others/authentication.png";
 import signUpImg from "../../assets/others/authentication1.png";
 import { Helmet } from "react-helmet-async";
 import ContinueGoogle from "../../components/shared/GoogleSignUp/ContinueGoogle";
+import { useForm } from "react-hook-form";
+import { imageUpload, saveUser } from "../../Api/utils";
+import useAuth from "../../hooks/GetAuthInfo/useAuth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useState } from "react";
 
 const SignUp = () => {
+  const [loading, setLoading] = useState(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
+  const { createUser, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const targetPath = location?.state ? `${location.state}` : "/";
+
+  const onSubmit = async (data) => {
+    const { name, email, photo, password } = data;
+    const photoFile = photo[0];
+    const photoUrl = await imageUpload(photoFile);
+
+    if(loading){
+      Swal.fire({
+        title: 'Registering User...',
+        text: 'Please wait while we process the registration.',
+        icon: 'info',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+    }
+
+    try {
+      const result = await createUser(email, password);
+      await updateUserProfile(name, photoUrl);
+      const dbData = await saveUser(result?.user);
+
+      if (result?.user && dbData.insertedId) {
+        setLoading(false)
+        
+        Swal.fire({
+          title: 'Success!',
+          text: 'User registration completed successfully.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+      });
+        navigate(targetPath);
+        reset();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -26,7 +84,7 @@ const SignUp = () => {
             <h2 className="text-2xl font-bold mb-6 text-center md:text-left">
               Sign Up
             </h2>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Name Input */}
               <div>
                 <label
@@ -39,10 +97,14 @@ const SignUp = () => {
                   type="text"
                   id="name"
                   name="name"
+                  {...register("name", { required: true })}
                   placeholder="Type here"
                   className="w-full border border-gray-300 rounded-lg p-2"
                   required
                 />
+                {errors.name && (
+                  <span className="text-red-500">Name field is required</span>
+                )}
               </div>
 
               {/* Email Input */}
@@ -57,11 +119,38 @@ const SignUp = () => {
                   type="email"
                   id="email"
                   name="email"
+                  {...register("email", { required: true })}
                   placeholder="Type here"
                   className="w-full border border-gray-300 rounded-lg p-2"
                   required
                 />
+                {errors.email && (
+                  <span className="text-red-500">Email field is required</span>
+                )}
               </div>
+
+              {/* Photo Input */}
+              <div>
+                <label
+                  className="block text-sm font-medium mb-1"
+                  htmlFor="photo"
+                >
+                  Photo
+                </label>
+                <input
+                  type="file"
+                  name="photo"
+                  {...register("photo", {
+                    required: "Choose a Profile Photo!",
+                  })}
+                  className="file-input w-full max-w-xs border border-gray-300 rounded-lg bg-yellow-500 text-gray-700 px-4 py-2 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50"
+                />
+              </div>
+
+              {/* Error Messages */}
+              {errors.photo && (
+                <span className="text-red-500">{errors.photo.message}</span>
+              )}
 
               {/* Password Input */}
               <div>
@@ -72,13 +161,35 @@ const SignUp = () => {
                   Password
                 </label>
                 <input
-                  type="password"
+                  type="text"
                   id="password"
                   name="password"
+                  {...register("password", {
+                    required: "Password field is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters long",
+                    },
+                    maxLength: {
+                      value: 20,
+                      message: "Password must not exceed 20 characters",
+                    },
+                    pattern: {
+                      value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/,
+                      message:
+                        "Password must contain A-Z a-z letters and numbers",
+                    },
+                  })}
                   placeholder="Enter your password"
                   className="w-full border border-gray-300 rounded-lg p-2"
-                  required
                 />
+
+                {/* Error Messages */}
+                {errors.password && (
+                  <span className="text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
               </div>
 
               {/* Submit Button */}
@@ -93,9 +204,9 @@ const SignUp = () => {
             {/* Login Redirect */}
             <p className="text-sm text-gray-500 mt-4 text-center md:text-left">
               Already registered?{" "}
-              <a href="/login" className="text-yellow-600 font-medium">
+              <Link to="/login" className="text-yellow-600 font-medium">
                 Go to log in
-              </a>
+              </Link>
             </p>
 
             {/* Social Media Sign Up */}

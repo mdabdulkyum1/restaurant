@@ -3,6 +3,7 @@ import authBg from "../../assets/others/authentication.png";
 import loginImg from "../../assets/others/authentication1.png";
 import { Helmet } from "react-helmet-async";
 import ContinueGoogle from "../../components/shared/GoogleSignUp/ContinueGoogle";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -82,9 +83,9 @@ const Login = () => {
             {/* Sign Up Link */}
             <p className="text-sm text-gray-500 mt-4 text-center md:text-left">
               Don{"'"}t have an account?{" "}
-              <a href="/signup" className="text-yellow-600 font-medium">
+              <Link to="/signup" className="text-yellow-600 font-medium">
                 Sign Up
-              </a>
+              </Link>
             </p>
 
             {/* Social Media Login */}
