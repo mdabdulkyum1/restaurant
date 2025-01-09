@@ -3,18 +3,19 @@ import useScrollDirection from "../../hooks/ScrollDirection/useScrollDirection";
 import useTheme from "../../hooks/ThemeToggle/useTheme";
 import useAuth from "../../hooks/GetAuthInfo/useAuth";
 import useRole from "../../hooks/GetRole/useRole";
+import { FaCartArrowDown } from "react-icons/fa6";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const isVisible = useScrollDirection();
 
   const { user, loading, logOut } = useAuth();
-  const {role} = useRole();
+  const { role } = useRole();
 
   const navigate = useNavigate();
   const handelLogOut = () => {
     logOut().then(() => {
-        navigate('/login')
+      navigate("/login");
     });
   };
 
@@ -26,18 +27,25 @@ const Navbar = () => {
       <li>
         <NavLink to="/contact">CONTACT US</NavLink>
       </li>
-      {
-          user && role === "admin" && 
-      <li>
-        <NavLink to="/dashboard">DASHBOARD</NavLink>
-      </li>
-      }
+      {user && role === "admin" && (
+        <li>
+          <NavLink to="/dashboard">DASHBOARD</NavLink>
+        </li>
+      )}
 
       <li>
         <NavLink to="/our-menu">OUR MENU</NavLink>
       </li>
       <li>
         <NavLink to="/our-shop">OUR SHOP</NavLink>
+      </li>
+      <li>
+        <Link to="/user-dashboard">
+          <span className="indicator">
+            <span className="indicator-item badge left-5">0</span>
+            <button><FaCartArrowDown className="text-2xl" /></button>
+          </span>
+        </Link>
       </li>
     </>
   );
@@ -119,10 +127,18 @@ const Navbar = () => {
             <div className="skeleton h-12 w-12 shrink-0 border border-yellow-600 rounded-full"></div>
           ) : user ? (
             <>
-            <div className="flex items-center gap-2">
-              <img src={user?.photoURL} referrerPolicy="no-referrer" alt={user?.displayName} title={user?.displayName} className="h-12 w-12 rounded-full" />
-              <button className="btn bg-yellow-400" onClick={handelLogOut}>LogOut</button>
-            </div>
+              <div className="flex items-center gap-2">
+                <img
+                  src={user?.photoURL}
+                  referrerPolicy="no-referrer"
+                  alt={user?.displayName}
+                  title={user?.displayName}
+                  className="h-12 w-12 rounded-full"
+                />
+                <button className="btn bg-yellow-400" onClick={handelLogOut}>
+                  LogOut
+                </button>
+              </div>
             </>
           ) : (
             <>

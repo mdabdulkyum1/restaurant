@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 
 
 function ItemCard({ item }) {
-  const { name , recipe, image} = item || {};
+  const { _id, name , recipe, image} = item || {};
+
+
+const handelAddToCart = id =>{
+  console.log(id);
+}
+
   return (
     <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
     <figure>
@@ -14,7 +20,7 @@ function ItemCard({ item }) {
       <h2 className="card-title text-center text-2xl font-bold">{name}</h2>
       <p className="text-center text-gray-600">{recipe}</p>
       <div className="card-actions justify-center mt-4">
-        <button className="btn btn-outline border-b-4 border-black hover:bg-black hover:text-white">
+        <button onClick={()=> handelAddToCart(_id)} className="btn btn-outline border-b-4 border-black hover:bg-black hover:text-white">
           Add to Cart
         </button>
       </div>
