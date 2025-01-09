@@ -6,8 +6,11 @@ import ContinueGoogle from "../../components/shared/GoogleSignUp/ContinueGoogle"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/GetAuthInfo/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { loadCaptchaEnginge, LoadCanvasTemplate } from 'react-simple-captcha';
+
+
 
 const Login = () => {
   const [err, setErr] = useState("");
@@ -44,6 +47,10 @@ const Login = () => {
     }
     console.log(email, password);
   };
+
+  useEffect(()=>{
+    loadCaptchaEnginge(6); 
+  },[])
 
   return (
     <>
@@ -128,6 +135,32 @@ const Login = () => {
                   </span>
                 )}
                 {err && <span className="text-red-500">{err}</span>}
+              </div>
+              {/* Captcha Input */}
+              <div>
+                <label
+                  className="block text-sm font-medium mb-1"
+                  htmlFor="password"
+                >
+                 <LoadCanvasTemplate />
+                </label>
+                <input
+                  type="text"
+                  id="captcha"
+                  name="captcha"
+                  {...register("captcha", {
+                    required: "Password field is required",
+                  })}
+                  placeholder="Enter Captcha"
+                  className="w-full border border-gray-300 rounded-lg p-2"
+                />
+
+                {/* Error Messages */}
+                {errors.captcha && (
+                  <span className="text-red-500">
+                    {errors.captcha.message}
+                  </span>
+                )}
               </div>
 
               {/* Submit Button */}
