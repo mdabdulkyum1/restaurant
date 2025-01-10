@@ -45,7 +45,7 @@ const Navbar = () => {
         <NavLink to="/our-shop">OUR SHOP</NavLink>
       </li>
       <li>
-        <Link to="/user-dashboard">
+        <Link to="/user-dashboard/my-cart">
           <span className="indicator">
             <span className="indicator-item badge left-5">{carts.length}</span>
             <button>

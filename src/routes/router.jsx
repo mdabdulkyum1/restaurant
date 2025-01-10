@@ -15,6 +15,7 @@ import SignUp from "../pages/Authentications/SignUp";
 import ManageAllUsers from "../pages/Admin/ManageAllUsers";
 import AdminRoute from './AdminRoute';
 import PrivateRoute from "./PrivateRoute";
+import MyCart from "../pages/UserDashboardInfo/MyCart";
 
 const router = createBrowserRouter([
     {
@@ -69,7 +70,10 @@ const router = createBrowserRouter([
         path: "user-dashboard",
         element: <UserDashboard></UserDashboard>,
         children: [
-
+            {
+                path:"my-cart",
+                element: <MyCart></MyCart>
+            }
         ]
     },
     {

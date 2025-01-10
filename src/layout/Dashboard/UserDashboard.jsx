@@ -9,7 +9,7 @@ import {
 import { MdPayment } from "react-icons/md";
 import { AiOutlineComment } from "react-icons/ai";
 import { BsFillBookmarkStarFill } from "react-icons/bs";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { useState } from "react";
 import { FaCalendarCheck } from "react-icons/fa6";
 import useCart from "../../hooks/GetCartData/useCart";
@@ -60,13 +60,13 @@ const UserDashboard = () => {
             </a>
           </li>
           <li>
-            <a
-              href="#"
+            <NavLink 
+              to="my-cart"
               className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-700 rounded"
             >
               <FaCartArrowDown />
               <span>My Cart: {carts.length}</span>
-            </a>
+            </NavLink>
           </li>
           <li>
             <Link
@@ -187,10 +187,7 @@ const UserDashboard = () => {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 p-6 ml-0 md:ml-64">
-        <div className="text-3xl font-bold text-gray-900 mb-4">
-          Dashboard Content
-        </div>
+      <div className="flex-1">
         {/* Dynamic Content */}
         <Outlet />
       </div>
