@@ -4,10 +4,15 @@ import useTheme from "../../hooks/ThemeToggle/useTheme";
 import useAuth from "../../hooks/GetAuthInfo/useAuth";
 import useRole from "../../hooks/GetRole/useRole";
 import { FaCartArrowDown } from "react-icons/fa6";
+import useCart from "../../hooks/GetCartData/useCart";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
+  
+  const { carts } = useCart();
+
   const isVisible = useScrollDirection();
+
 
   const { user, loading, logOut } = useAuth();
   const { role } = useRole();
@@ -42,8 +47,10 @@ const Navbar = () => {
       <li>
         <Link to="/user-dashboard">
           <span className="indicator">
-            <span className="indicator-item badge left-5">0</span>
-            <button><FaCartArrowDown className="text-2xl" /></button>
+            <span className="indicator-item badge left-5">{carts.length}</span>
+            <button>
+              <FaCartArrowDown className="text-2xl" />
+            </button>
           </span>
         </Link>
       </li>

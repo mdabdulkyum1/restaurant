@@ -12,9 +12,11 @@ import { BsFillBookmarkStarFill } from "react-icons/bs";
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import { FaCalendarCheck } from "react-icons/fa6";
+import useCart from "../../hooks/GetCartData/useCart";
 
 const UserDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const {carts} = useCart();
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -63,7 +65,7 @@ const UserDashboard = () => {
               className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-700 rounded"
             >
               <FaCartArrowDown />
-              <span>My Cart: 0</span>
+              <span>My Cart: {carts.length}</span>
             </a>
           </li>
           <li>
