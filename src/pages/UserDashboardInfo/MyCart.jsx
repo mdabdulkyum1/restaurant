@@ -27,7 +27,7 @@ const MyCart = () => {
                 if (data.deletedCount > 0) {
                   Swal.fire({
                     title: "Deleted!",
-                    text: "User has been deleted.",
+                    text: "Cart Item Removed!",
                     icon: "success",
                   });
                   refetch();
