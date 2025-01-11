@@ -16,6 +16,8 @@ import ManageAllUsers from "../pages/Admin/ManageAllUsers";
 import AdminRoute from './AdminRoute';
 import PrivateRoute from "./PrivateRoute";
 import MyCart from "../pages/UserDashboardInfo/MyCart";
+import Payment from "../pages/UserDashboardInfo/Payment";
+import PaymentHistory from "../pages/UserDashboardInfo/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -73,6 +75,14 @@ const router = createBrowserRouter([
             {
                 path:"my-cart",
                 element: <MyCart></MyCart>
+            },
+            {
+                path: "payment-history",
+                element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: "payment",
+                element: <Payment></Payment>
             }
         ]
     },

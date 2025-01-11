@@ -47,17 +47,17 @@ const UserDashboard = () => {
               className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-700 rounded"
             >
               <FaCalendarCheck /> 
-              <sapn>Reservation</sapn>
+              <span>Reservation</span>
             </a>
           </li>
           <li>
-            <a
-              href="#"
+            <NavLink
+              to="payment-history"
               className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-700 rounded"
             >
               <MdPayment />
               <span>Payment History</span>
-            </a>
+            </NavLink>
           </li>
           <li>
             <NavLink 

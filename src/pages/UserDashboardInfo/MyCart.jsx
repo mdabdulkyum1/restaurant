@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import SectionTitle from "../../components/shared/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../hooks/AxiosSecure/useAxiosSecure";
 import useCart from "../../hooks/GetCartData/useCart";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const { carts, refetch } = useCart();
@@ -9,32 +10,31 @@ const MyCart = () => {
     .reduce((acc, item) => acc + item.price, 0)
     .toFixed(2);
 
-    const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
 
-
-    const handelDelete = async (id) => {
-            Swal.fire({
-              title: "Are you sure?",
-              text: "You won't be able to revert this!",
-              icon: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#3085d6",
-              cancelButtonColor: "#d33",
-              confirmButtonText: "Yes, delete it!",
-            }).then(async (result) => {
-              if (result.isConfirmed) {
-                const { data } = await axiosSecure.delete(`/cart/${id}`);
-                if (data.deletedCount > 0) {
-                  Swal.fire({
-                    title: "Deleted!",
-                    text: "Cart Item Removed!",
-                    icon: "success",
-                  });
-                  refetch();
-                }
-              }
-            });
-    }
+  const handelDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const { data } = await axiosSecure.delete(`/cart/${id}`);
+        if (data.deletedCount > 0) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Cart Item Removed!",
+            icon: "success",
+          });
+          refetch();
+        }
+      }
+    });
+  };
 
   return (
     <div className="">
@@ -46,9 +46,11 @@ const MyCart = () => {
       </div>
       <div className="flex justify-around">
         <h1 className="text-3xl">Total orders: {carts.length}</h1>
-        <h1 className="text-3xl">total price: ${totalPrice}</h1>
+        <h1 className="text-3xl">Total price: ${totalPrice}</h1>
         <div className="">
-          <button className="btn bg-yellow-600">Pay</button>
+          <Link to="/user-dashboard/payment">
+            <button className="btn bg-yellow-600 text-white">Pay</button>
+          </Link>
         </div>
       </div>
       <div className="px-11">
@@ -84,7 +86,12 @@ const MyCart = () => {
                   <td>{cart.name}</td>
                   <td>${cart.price}</td>
                   <td>
-                    <button onClick={()=>handelDelete(cart._id)} className="btn bg-red-400">Delete</button>
+                    <button
+                      onClick={() => handelDelete(cart._id)}
+                      className="btn bg-red-400"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
